@@ -1,6 +1,6 @@
 use try_from_discrim::TryFrom;
 
-#[derive(Debug, TryFrom)]
+#[derive(Debug, TryFrom, Clone, Copy)]
 #[from(u16)]
 #[non_exhaustive]
 /// A collection of hardware registers' addresses, extracted from [`hardware.inc`](https://github.com/gbdev/hardware.inc).
