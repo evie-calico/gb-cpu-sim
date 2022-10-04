@@ -366,9 +366,9 @@ impl<S: AddressSpace> State<S> {
 
 	fn pop(&mut self) -> u16 {
 		let mut result = (self.read(self.sp) as u16) << 8;
-		self.sp += 1;
+		self.sp = self.sp.wrapping_add(1);
 		result |= self.read(self.sp) as u16;
-		self.sp += 1;
+		self.sp = self.sp.wrapping_add(1);
 		self.cycles_elapsed += 2;
 		result
 	}
