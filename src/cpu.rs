@@ -759,7 +759,7 @@ impl<S: AddressSpace> State<S> {
 					opcode @ 0x40..=0x7F => {
 						let value = self.get_r8_by_id(opcode & 7)
 							& 1u8.overflowing_shl((opcode >> 3).into()).0;
-						self.f.set_z(value != 0);
+						self.f.set_z(value == 0);
 					}
 					/* res n, r8 */
 					opcode @ 0x80..=0xBF => {
