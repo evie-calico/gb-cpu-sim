@@ -366,9 +366,9 @@ impl<S: AddressSpace> State<S> {
 
 	fn pop(&mut self) -> u16 {
 		let mut result = (self.read(self.sp) as u16) << 8;
-		self.sp += 1;
+		self.sp = self.sp.wrapping_add(1);
 		result |= self.read(self.sp) as u16;
-		self.sp += 1;
+		self.sp = self.sp.wrapping_add(1);
 		self.cycles_elapsed += 2;
 		result
 	}
@@ -759,7 +759,7 @@ impl<S: AddressSpace> State<S> {
 					opcode @ 0x40..=0x7F => {
 						let value = self.get_r8_by_id(opcode & 7)
 							& 1u8.overflowing_shl((opcode >> 3).into()).0;
-						self.f.set_z(value != 0);
+						self.f.set_z(value == 0);
 					}
 					/* res n, r8 */
 					opcode @ 0x80..=0xBF => {
