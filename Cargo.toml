@@ -1,6 +1,6 @@
 [package]
 name = "gb-cpu-sim"
-version = "1.0.0"
+version = "1.1.0"
 description = "A very simple Game Boy CPU emulator."
 license = "MIT"
 homepage = "https://github.com/eievui5/gb-cpu-sim"
